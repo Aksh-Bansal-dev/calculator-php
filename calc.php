@@ -173,10 +173,16 @@ function ret($res, $num1, $num2, $op){
         $num1 = "(".$num1.")";
     }
 
-    header("Location: /index.php?res=$res&equation=${num1}${op}(${num2})");
+    $host  = $_SERVER['HTTP_HOST'];
+    $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+
+    header("Location: http://$host/$uri/index.php?res=$res&equation=${num1}${op}(${num2})");
     exit();
 }
-function error($err){
-    header("Location: /index.php?err=$err");
+function error($err)
+{
+    $host  = $_SERVER['HTTP_HOST'];
+    $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+    header("Location: http://$host/$uri/index.php?err=$err");
     exit();
 }
